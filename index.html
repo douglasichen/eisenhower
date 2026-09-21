@@ -227,11 +227,13 @@
       const H = 340, T = 22, B = 46, L = 14, R = 20, PX_DAY = 30, IMP_MAX = 4;
       const bandY = (imp) => H - B - (imp / IMP_MAX) * (H - T - B);
 
-      // the whole timeline lives in the svg; the box sets how many days are on screen at once
+      // the whole timeline lives in the svg; the box sets how many days are on screen at once.
+      // it starts today — earlier days exist only if something still on the plot is overdue
       function timeline() {
         const t0 = today().getTime();
-        const dues = db.assignments.map((a) => parse(a.due).getTime());
-        return [new Date(Math.min(t0, ...dues) - 2 * DAY), new Date(Math.max(t0 + 14 * DAY, ...dues) + 2 * DAY)];
+        const dues = visible().map((a) => parse(a.due).getTime());
+        const late = dues.filter((d) => d < t0);
+        return [new Date(late.length ? Math.min(...late) : t0), new Date(Math.max(t0 + 14 * DAY, ...dues) + 2 * DAY)];
       }
 
       let view = { min: null, pxDay: 1, leftDate: null }; // leftDate = what sits at the viewport's left edge
@@ -242,8 +244,9 @@
         const days = (max - min) / DAY;
         const window = Math.min(730, Math.max(1, +$('#days').value || 30));
         const pxDay = sc.clientWidth / window;
-        const W = Math.max(sc.clientWidth, days * pxDay);
-        const x = (d) => ((d - min) / DAY) * pxDay;
+        const OFF = 10; // so a marker sitting on the first day isn't half cut off
+        const W = Math.max(sc.clientWidth, days * pxDay + OFF);
+        const x = (d) => OFF + ((d - min) / DAY) * pxDay;
         const t0 = today();
         const items = visible();
 
@@ -279,7 +282,7 @@
         plot.innerHTML = svg;
 
         // keep looking at the same date when the zoom or the data changes
-        if (view.leftDate === null) view.leftDate = t0.getTime() - DAY;
+        if (view.leftDate === null) view.leftDate = min.getTime();
         view = { min, pxDay, leftDate: view.leftDate };
         sc.scrollLeft = ((view.leftDate - min) / DAY) * pxDay;
 
