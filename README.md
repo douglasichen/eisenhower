@@ -3,7 +3,7 @@
 Assignment tracker: due date × importance scatter, one HTML page, one JSON file.
 
 ```sh
-node server.js   # http://localhost:8787
+node server.js   # http://localhost:47913
 ```
 
 - `db.json` — the database.

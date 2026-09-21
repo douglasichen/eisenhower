@@ -69,7 +69,9 @@
         display: inline-flex; align-items: center; gap: 7px;
         border: 1px solid var(--line); background: transparent; color: var(--ink-2);
         border-radius: 999px; padding: 4px 11px 4px 8px; font-size: 12.5px; cursor: pointer;
+        white-space: nowrap;
       }
+      input[type="checkbox"] { accent-color: var(--accent); }
       .chip[aria-pressed="false"] { opacity: 0.35; }
       .chip:hover { border-color: var(--ink-3); }
 
@@ -92,7 +94,7 @@
 
       .row {
         display: grid; align-items: center; gap: 12px;
-        grid-template-columns: 16px 1fr 96px 92px 62px 24px;
+        grid-template-columns: 16px 1fr 96px 96px 68px 44px 24px;
         padding: 9px 12px; border-bottom: 1px solid var(--line);
       }
       .row:hover { background: var(--surface); }
@@ -321,7 +323,7 @@
       fetch('db.json')
         .then((r) => r.json())
         .then((d) => { db = d; render(); })
-        .catch(() => ($('#list').innerHTML = '<div class="empty">run <code>node server.js</code> and open localhost:8787</div>'));
+        .catch(() => ($('#list').innerHTML = '<div class="empty">run <code>node server.js</code> and open localhost:47913</div>'));
     </script>
   </body>
 </html>
