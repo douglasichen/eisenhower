@@ -56,13 +56,28 @@
         padding: 16px;
       }
 
-      svg { display: block; width: 100%; height: auto; }
+      .plotwrap { display: flex; padding: 16px 0 16px 4px; }
+      .scroll { overflow-x: auto; overscroll-behavior-x: contain; flex: 1; }
+      .scroll::-webkit-scrollbar { height: 8px; }
+      .scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+      #yaxis { flex: none; }
+      .range { gap: 8px; margin: 12px 0 0; }
+      .range input { padding: 5px 8px; font-size: 13px; }
+      .range button { padding: 5px 10px; font-size: 13px; }
+      svg { display: block; }
       .grid { stroke: var(--line); stroke-width: 1; }
       .axis { fill: var(--ink-3); font-size: 11px; font-family: var(--mono); }
       .axis-title { fill: var(--ink-3); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
       .today { stroke: var(--accent); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0.8; }
-      .mark { cursor: pointer; stroke-width: 2; }
+      .mark { stroke-width: 2; }
       .mark:hover { stroke: var(--ink); }
+      #tip {
+        position: fixed; display: none; z-index: 10; pointer-events: none;
+        background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+        padding: 8px 11px; font-size: 12.5px; line-height: 1.45; color: var(--ink-2);
+        box-shadow: 0 8px 24px rgb(0 0 0 / 0.5);
+      }
+      #tip b { color: var(--ink); font-weight: 550; }
 
       .legend { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; }
       .chip {
@@ -94,18 +109,25 @@
 
       .row {
         display: grid; align-items: center; gap: 12px;
-        grid-template-columns: 16px 1fr 96px 96px 68px 44px 24px;
-        padding: 9px 12px; border-bottom: 1px solid var(--line);
+        grid-template-columns: 1fr 100px 86px 56px 76px 132px 52px 24px;
+        padding: 6px 12px; border-bottom: 1px solid var(--line);
       }
       .row:hover { background: var(--surface); }
-      .row.done .name, .row.done .course { color: var(--ink-3); text-decoration: line-through; }
+      .row.head {
+        color: var(--ink-3); font-size: 12px; text-transform: uppercase;
+        letter-spacing: 0.05em; padding-bottom: 8px; background: none;
+      }
+      .row.done .name, .row.skip .name { color: var(--ink-3); text-decoration: line-through; }
+      .row.done .course, .row.skip .course { opacity: 0.5; }
+      .row input[type="date"], .row select {
+        padding: 3px 6px; font-size: 12.5px; font-family: var(--mono); color: var(--ink-2);
+      }
+      #search { flex: 1; max-width: 280px; padding: 6px 10px; font-size: 13px; }
       .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
       .course { color: var(--ink-2); font-size: 13px; }
-      .due { font-family: var(--mono); font-size: 12.5px; color: var(--ink-3); }
       .left { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
       .left.soon { color: var(--warn); }
       .left.over { color: var(--danger); }
-      .imp { letter-spacing: 2px; color: var(--ink-3); font-size: 11px; }
       .del { background: none; border: 0; color: var(--ink-3); padding: 2px 6px; }
       .del:hover { color: var(--danger); }
       .empty { color: var(--ink-3); padding: 24px 0; }
@@ -119,9 +141,18 @@
         <span class="status" id="status"></span>
       </header>
 
-      <div class="card">
-        <svg id="plot" viewBox="0 0 1000 400" role="img" aria-label="Assignments by due date and importance"></svg>
+      <div class="card plotwrap">
+        <svg id="yaxis" width="44" height="340" aria-hidden="true"></svg>
+        <div class="scroll">
+          <svg id="plot" role="img" aria-label="Assignments by due date and importance"></svg>
+        </div>
       </div>
+
+      <div class="bar range">
+        <label>next <input type="number" id="days" value="30" min="1" max="730" /> days</label>
+        <span class="sub">scroll the plot sideways</span>
+      </div>
+
       <div class="legend" id="legend"></div>
 
       <form id="add" autocomplete="off">
@@ -130,19 +161,24 @@
         <datalist id="courses"></datalist>
         <input id="f-due" type="date" required />
         <select id="f-imp">
-          <option value="1">low</option>
-          <option value="2" selected>medium</option>
-          <option value="3">high</option>
+          <option value="1">importance 1</option>
+          <option value="2" selected>importance 2</option>
+          <option value="3">importance 3</option>
         </select>
         <button>Add</button>
       </form>
 
       <div class="bar">
-        <label><input type="checkbox" id="hide-done" checked /> hide done</label>
-        <span id="filter-note"></span>
+        <input id="search" type="search" placeholder="search assignments" />
+        <label><input type="checkbox" id="hide-done" checked /> hide done / not doing</label>
+      </div>
+      <div class="row head">
+        <span>Assignment</span><span>Topic</span><span>Days Left</span>
+        <span>Done?</span><span>Not Doing</span><span>Due Date</span><span>Imp.</span><span></span>
       </div>
       <div id="list"></div>
     </div>
+    <div id="tip"></div>
 
     <script>
       const SHAPES = ['circle', 'square', 'triangle', 'diamond', 'down'];
@@ -177,51 +213,69 @@
         return `<${tag} ${geo} ${attrs}>${inner}</${tag}>`;
       }
 
+      const byId = (id) => db.assignments.find((a) => a.id === id);
+
       function visible() {
-        return db.assignments.filter((a) => !hidden.has(a.course) && !(a.done && $('#hide-done').checked));
+        return db.assignments.filter(
+          (a) => !hidden.has(a.course) && !(a.status !== 'open' && $('#hide-done').checked)
+        );
+      }
+
+      // plot geometry — importance axis spans 0–4 so jitter around 1–3 never clips
+      const H = 340, T = 22, B = 46, L = 14, R = 20, PX_DAY = 30, IMP_MAX = 4;
+      const bandY = (imp) => H - B - (imp / IMP_MAX) * (H - T - B);
+
+      // yesterday → N days out, N from the "next … days" box
+      function span() {
+        const t0 = today();
+        const n = Math.min(730, Math.max(1, +$('#days').value || 30));
+        return [new Date(t0 - DAY), new Date(t0.getTime() + n * DAY)];
       }
 
       function drawPlot() {
-        const W = 1000, H = 400, L = 56, R = 24, T = 24, B = 52;
-        const items = visible();
+        const [min, max] = span();
+        const days = (max - min) / DAY;
+        const W = Math.max($('.scroll').clientWidth, days * PX_DAY + L + R);
+        const x = (d) => L + ((d - min) / DAY / days) * (W - L - R);
         const t0 = today();
-        const dates = items.map((a) => parse(a.due));
-        const min = new Date(Math.min(t0, ...dates) - DAY);
-        const max = new Date(Math.max(t0.getTime() + DAY * 7, ...dates) + DAY);
-        const span = Math.max(1, (max - min) / DAY);
-        const x = (d) => L + ((d - min) / DAY / span) * (W - L - R);
-        const band = (H - T - B) / 3;
-        const y = (imp, jit) => H - B - (imp - 0.5) * band + jit * band * 0.62;
+        const items = visible().filter((a) => parse(a.due) >= min && parse(a.due) <= max);
 
         let svg = '';
-        // importance bands
-        for (let i = 1; i <= 3; i++) {
-          const yy = H - B - (i - 0.5) * band;
-          svg += `<line class="grid" x1="${L}" x2="${W - R}" y1="${yy}" y2="${yy}" />`;
-          svg += `<text class="axis" x="${L - 12}" y="${yy + 4}" text-anchor="end">${['low', 'med', 'high'][i - 1]}</text>`;
-        }
-        // date ticks
-        const step = Math.max(1, Math.ceil(span / 9));
-        for (let d = 0; d <= span; d += step) {
+        for (let i = 1; i <= IMP_MAX; i++) svg += `<line class="grid" x1="0" x2="${W}" y1="${bandY(i)}" y2="${bandY(i)}" />`;
+
+        const step = Math.max(1, Math.ceil(days / ((W - L - R) / 72)));
+        for (let d = 0; d <= days; d += step) {
           const date = new Date(min.getTime() + d * DAY);
-          svg += `<text class="axis" x="${x(date)}" y="${H - B + 22}" text-anchor="middle">${fmt(date)}</text>`;
+          const anchor = d === 0 ? 'start' : d + step > days ? 'end' : 'middle';
+          svg += `<text class="axis" x="${x(date)}" y="${H - B + 22}" text-anchor="${anchor}">${fmt(date)}</text>`;
         }
-        svg += `<line class="grid" x1="${L}" x2="${W - R}" y1="${H - B}" y2="${H - B}" />`;
-        svg += `<line class="today" x1="${x(t0)}" x2="${x(t0)}" y1="${T}" y2="${H - B}" />`;
-        svg += `<text class="axis" x="${x(t0) + 6}" y="${T + 11}" fill="var(--accent)">today</text>`;
-        svg += `<text class="axis-title" x="${W / 2}" y="${H - 8}" text-anchor="middle">due date</text>`;
-        svg += `<text class="axis-title" transform="translate(16 ${(H - B + T) / 2}) rotate(-90)" text-anchor="middle">importance</text>`;
+        svg += `<line class="grid" x1="0" x2="${W}" y1="${H - B}" y2="${H - B}" />`;
+        if (t0 >= min && t0 <= max) {
+          svg += `<line class="today" x1="${x(t0)}" x2="${x(t0)}" y1="${T}" y2="${H - B}" />`;
+          svg += `<text class="axis" x="${x(t0) + 6}" y="${T + 11}" fill="var(--accent)">today</text>`;
+        }
 
         for (const a of items) {
-          const jit = ((hash(a.id) % 100) / 100 - 0.5) * 2;
-          const cx = x(parse(a.due)), cy = y(a.importance, jit), c = color(a.course);
+          const jit = ((hash(a.id) % 100) / 100 - 0.5) * 0.7; // ±0.35 importance units
+          const cx = x(parse(a.due)), cy = bandY(a.importance + jit), c = color(a.course);
+          const open = a.status === 'open';
           svg += mark(
-            shape(a.course), cx, cy, 6,
-            `class="mark" fill="${a.done ? 'none' : c}" stroke="${c}" data-id="${a.id}" opacity="${a.done ? 0.6 : 1}"`,
-            `<title>${a.name} · ${a.course} · ${a.due} (${daysLeft(a)}d)</title>`
+            shape(a.course), cx, cy, 4.5,
+            `class="mark" fill="${open ? c : 'none'}" stroke="${c}" data-id="${a.id}"
+             opacity="${open ? 1 : 0.5}" ${a.status === 'skip' ? 'stroke-dasharray="2 2"' : ''}`
           );
         }
-        $('#plot').innerHTML = svg;
+        const plot = $('#plot');
+        plot.setAttribute('viewBox', `0 0 ${W} ${H}`);
+        plot.setAttribute('width', W);
+        plot.setAttribute('height', H);
+        plot.innerHTML = svg;
+
+        // fixed gutter so the importance scale stays put while the dates scroll
+        $('#yaxis').setAttribute('height', H);
+        $('#yaxis').innerHTML =
+          [0, 1, 2, 3, 4].map((i) => `<text class="axis" x="34" y="${bandY(i) + 4}" text-anchor="end">${i}</text>`).join('') +
+          `<text class="axis-title" transform="translate(13 ${(H - B + T) / 2}) rotate(-90)" text-anchor="middle">importance</text>`;
       }
 
       function drawLegend() {
@@ -236,20 +290,26 @@
       }
 
       function drawList() {
-        const items = visible().sort((a, b) => a.due.localeCompare(b.due) || a.name.localeCompare(b.name));
-        $('#count').textContent = `${db.assignments.filter((a) => !a.done).length} open`;
+        const q = $('#search').value.trim().toLowerCase();
+        const items = visible()
+          .filter((a) => !q || (a.name + ' ' + a.course).toLowerCase().includes(q))
+          .sort((a, b) => a.due.localeCompare(b.due) || a.name.localeCompare(b.name));
+        $('#count').textContent = `${db.assignments.filter((a) => a.status === 'open').length} open`;
         $('#list').innerHTML =
           items
             .map((a) => {
               const d = daysLeft(a);
               const cls = d < 0 ? 'over' : d <= 2 ? 'soon' : '';
-              return `<div class="row ${a.done ? 'done' : ''}">
-                <input type="checkbox" data-toggle="${a.id}" ${a.done ? 'checked' : ''} />
+              return `<div class="row ${a.status}">
                 <span class="name">${a.name}</span>
                 <span class="course" style="color:${color(a.course)}">${a.course}</span>
-                <span class="due">${a.due}</span>
-                <span class="left ${cls}">${d < 0 ? `${-d}d late` : `${d}d`}</span>
-                <span class="imp">${'●'.repeat(a.importance)}${'○'.repeat(3 - a.importance)}</span>
+                <span class="left ${cls}">${d < 0 ? `${-d} days late` : d === 1 ? '1 day' : `${d} days`}</span>
+                <input type="checkbox" data-set="done" data-id="${a.id}" ${a.status === 'done' ? 'checked' : ''} />
+                <input type="checkbox" data-set="skip" data-id="${a.id}" ${a.status === 'skip' ? 'checked' : ''} />
+                <input type="date" class="due" data-field="due" data-id="${a.id}" value="${a.due}" />
+                <select class="imp" data-field="importance" data-id="${a.id}">
+                  ${[0, 1, 2, 3, 4].map((i) => `<option ${a.importance === i ? 'selected' : ''}>${i}</option>`).join('')}
+                </select>
                 <button class="del" data-del="${a.id}" title="delete">×</button>
               </div>`;
             })
@@ -285,7 +345,7 @@
           course,
           due: $('#f-due').value,
           importance: +$('#f-imp').value,
-          done: false,
+          status: 'open',
         };
         if (!db.courses.includes(course)) db.courses.push(course);
         db.assignments.push(a);
@@ -300,25 +360,55 @@
         if (chip) {
           const c = chip.dataset.course;
           hidden.has(c) ? hidden.delete(c) : hidden.add(c);
-          render();
-          return;
-        }
-        const mark = e.target.closest('.mark');
-        const id = mark?.dataset.id || e.target.dataset.toggle;
-        if (id) {
-          const a = db.assignments.find((x) => x.id === id);
-          a.done = !a.done;
-          return save(`${a.done ? 'done' : 'reopen'}: ${a.name} (${a.course})`);
+          return render();
         }
         const del = e.target.dataset.del;
         if (del) {
-          const a = db.assignments.find((x) => x.id === del);
+          const a = byId(del);
           db.assignments = db.assignments.filter((x) => x.id !== del);
           save(`delete ${a.name} (${a.course})`);
         }
       });
 
+      document.addEventListener('change', (e) => {
+        const { id, set, field } = e.target.dataset;
+        if (!id) return;
+        const a = byId(id);
+        if (set) {
+          a.status = e.target.checked ? set : 'open'; // done / not doing are mutually exclusive
+          return save(`${a.status === 'open' ? 'reopen' : a.status}: ${a.name} (${a.course})`);
+        }
+        a[field] = field === 'importance' ? +e.target.value : e.target.value;
+        save(`${a.name} (${a.course}) ${field} → ${a[field]}`);
+      });
+
+      // hover card — the plot is read-only, points only explain themselves
+      const tip = $('#tip');
+      const place = (e) => {
+        tip.style.left = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8) + 'px';
+        tip.style.top = Math.max(8, e.clientY - tip.offsetHeight - 12) + 'px';
+      };
+      $('#plot').addEventListener('mouseover', (e) => {
+        const m = e.target.closest('.mark');
+        if (!m) return;
+        const a = byId(m.dataset.id);
+        const d = daysLeft(a);
+        tip.innerHTML = `<b>${a.name}</b><br /><span style="color:${color(a.course)}">${a.course}</span>
+          · importance ${a.importance}<br />${a.due} · ${d < 0 ? `${-d}d late` : `${d}d left`}${
+          a.status === 'open' ? '' : ` · ${a.status === 'skip' ? 'not doing' : 'done'}`
+        }`;
+        tip.style.display = 'block';
+        place(e);
+      });
+      $('#plot').addEventListener('mousemove', (e) => tip.style.display === 'block' && place(e));
+      $('#plot').addEventListener('mouseout', (e) => {
+        if (e.target.closest('.mark')) tip.style.display = 'none';
+      });
+
       $('#hide-done').onchange = render;
+      $('#days').oninput = drawPlot;
+      $('#search').oninput = drawList;
+      addEventListener('resize', drawPlot);
 
       fetch('db.json')
         .then((r) => r.json())
