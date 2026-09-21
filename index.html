@@ -150,8 +150,8 @@
       </div>
 
       <div class="bar range">
-        <label>next <input type="number" id="days" value="30" min="1" max="730" /> days</label>
-        <span class="sub">drag the plot to pan</span>
+        <label>show <input type="number" id="days" value="30" min="1" max="730" /> days at once</label>
+        <span class="sub">drag the plot to move through time</span>
       </div>
 
       <div class="legend" id="legend"></div>
@@ -227,25 +227,30 @@
       const H = 340, T = 22, B = 46, L = 14, R = 20, PX_DAY = 30, IMP_MAX = 4;
       const bandY = (imp) => H - B - (imp / IMP_MAX) * (H - T - B);
 
-      // yesterday → N days out, N from the "next … days" box
-      function span() {
-        const t0 = today();
-        const n = Math.min(730, Math.max(1, +$('#days').value || 30));
-        return [new Date(t0 - DAY), new Date(t0.getTime() + n * DAY)];
+      // the whole timeline lives in the svg; the box sets how many days are on screen at once
+      function timeline() {
+        const t0 = today().getTime();
+        const dues = db.assignments.map((a) => parse(a.due).getTime());
+        return [new Date(Math.min(t0, ...dues) - 2 * DAY), new Date(Math.max(t0 + 14 * DAY, ...dues) + 2 * DAY)];
       }
 
+      let view = { min: null, pxDay: 1, leftDate: null }; // leftDate = what sits at the viewport's left edge
+
       function drawPlot() {
-        const [min, max] = span();
+        const sc = $('.scroll');
+        const [min, max] = timeline();
         const days = (max - min) / DAY;
-        const W = Math.max($('.scroll').clientWidth, days * PX_DAY + L + R);
-        const x = (d) => L + ((d - min) / DAY / days) * (W - L - R);
+        const window = Math.min(730, Math.max(1, +$('#days').value || 30));
+        const pxDay = sc.clientWidth / window;
+        const W = Math.max(sc.clientWidth, days * pxDay);
+        const x = (d) => ((d - min) / DAY) * pxDay;
         const t0 = today();
-        const items = visible().filter((a) => parse(a.due) >= min && parse(a.due) <= max);
+        const items = visible();
 
         let svg = '';
         for (let i = 1; i <= IMP_MAX; i++) svg += `<line class="grid" x1="0" x2="${W}" y1="${bandY(i)}" y2="${bandY(i)}" />`;
 
-        const step = Math.max(1, Math.ceil(days / ((W - L - R) / 72)));
+        const step = Math.max(1, Math.ceil(72 / pxDay));
         for (let d = 0; d <= days; d += step) {
           const date = new Date(min.getTime() + d * DAY);
           const anchor = d === 0 ? 'start' : d + step > days ? 'end' : 'middle';
@@ -272,6 +277,11 @@
         plot.setAttribute('width', W);
         plot.setAttribute('height', H);
         plot.innerHTML = svg;
+
+        // keep looking at the same date when the zoom or the data changes
+        if (view.leftDate === null) view.leftDate = t0.getTime() - DAY;
+        view = { min, pxDay, leftDate: view.leftDate };
+        sc.scrollLeft = ((view.leftDate - min) / DAY) * pxDay;
 
         // fixed gutter so the importance scale stays put while the dates scroll
         $('#yaxis').setAttribute('height', H);
@@ -423,6 +433,9 @@
       });
       sc.addEventListener('pointermove', (e) => drag && (sc.scrollLeft = drag.left - (e.clientX - drag.x)));
       sc.addEventListener('pointerup', () => { drag = null; sc.classList.remove('dragging'); });
+      sc.addEventListener('scroll', () => {
+        if (view.min) view.leftDate = view.min.getTime() + (sc.scrollLeft / view.pxDay) * DAY;
+      });
 
       $('#days').value = localStorage.days || 30; // view setting, not data — stays out of the db
       $('#days').oninput = () => { localStorage.days = $('#days').value; drawPlot(); };
