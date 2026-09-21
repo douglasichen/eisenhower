@@ -232,22 +232,24 @@
       // it starts today — earlier days exist only if something still on the plot is overdue
       function timeline() {
         const t0 = today().getTime();
-        const dues = visible().map((a) => parse(a.due).getTime());
+        const dues = visible().map((a) => parse(a.due).getTime()).filter((d) => !isNaN(d));
         const late = dues.filter((d) => d < t0);
         return [new Date(late.length ? Math.min(...late) : t0), new Date(Math.max(t0 + 14 * DAY, ...dues) + 2 * DAY)];
       }
+
+      const addDays = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); // DST-safe
 
       let view = { min: null, pxDay: 1, leftDate: null }; // leftDate = what sits at the viewport's left edge
 
       function drawPlot() {
         const sc = $('.scroll');
         const [min, max] = timeline();
-        const days = (max - min) / DAY;
+        const days = Math.round((max - min) / DAY); // whole days; DST makes the raw quotient fractional
         const windowDays = Math.min(730, Math.max(1, +$('#days').value || 30));
         const pxDay = sc.clientWidth / windowDays;
         const OFF = 10; // so a marker sitting on the first day isn't half cut off
         const W = Math.max(sc.clientWidth, days * pxDay + OFF);
-        const x = (d) => OFF + ((d - min) / DAY) * pxDay;
+        const x = (d) => OFF + Math.round((d - min) / DAY) * pxDay;
         const t0 = today();
         const items = visible();
 
@@ -256,7 +258,7 @@
 
         const step = Math.max(1, Math.ceil(72 / pxDay));
         for (let d = 0; d <= days; d += step) {
-          const date = new Date(min.getTime() + d * DAY);
+          const date = addDays(min, d);
           const anchor = d === 0 ? 'start' : d + step > days ? 'end' : 'middle';
           svg += `<text class="axis" x="${x(date)}" y="${H - B + 22}" text-anchor="${anchor}">${fmt(date)}</text>`;
         }
@@ -297,8 +299,8 @@
 
         // keep looking at the same date when the zoom or the data changes
         if (view.leftDate === null) view.leftDate = min.getTime();
-        view = { min, pxDay, leftDate: view.leftDate };
-        sc.scrollLeft = ((view.leftDate - min) / DAY) * pxDay;
+        view = { min, pxDay, off: OFF, leftDate: view.leftDate };
+        sc.scrollLeft = OFF + ((view.leftDate - min) / DAY) * pxDay;
 
         // fixed gutter so the importance scale stays put while the dates scroll
         $('#yaxis').setAttribute('height', H);
@@ -347,8 +349,10 @@
 
       const render = () => { drawPlot(); drawLegend(); drawList(); };
 
-      async function save(msg) {
+      async function save(msg, refocus) {
         render();
+        // re-rendering replaces the row you were editing — put the cursor back in the same cell
+        if (refocus) $(`[data-id="${refocus.id}"][data-field="${refocus.field}"]`)?.focus();
         const s = $('#status');
         try {
           const r = await fetch('/db', {
@@ -367,10 +371,14 @@
 
       $('#add').onsubmit = (e) => {
         e.preventDefault();
-        const course = $('#f-course').value.trim();
+        const typed = $('#f-course').value.trim();
+        const name = $('#f-name').value.trim();
+        if (!typed || !name) return; // `required` passes on whitespace; trim decides
+        // "cpsc 418" should join CPSC 418, not start a second topic with its own colour
+        const course = db.courses.find((c) => c.toLowerCase() === typed.toLowerCase()) || typed;
         const a = {
           id: Math.random().toString(36).slice(2, 9),
-          name: $('#f-name').value.trim(),
+          name,
           course,
           due: $('#f-due').value,
           importance: +$('#f-imp').value,
@@ -407,8 +415,12 @@
           a.status = e.target.checked ? set : 'open'; // done / not doing are mutually exclusive
           return save(`${a.status === 'open' ? 'reopen' : a.status}: ${a.name} (${a.course})`);
         }
+        if (field === 'due' && !/^\d{4}-\d{2}-\d{2}$/.test(e.target.value)) {
+          e.target.value = a.due; // a cleared date would poison every date calculation
+          return;
+        }
         a[field] = field === 'importance' ? +e.target.value : e.target.value;
-        save(`${a.name} (${a.course}) ${field} → ${a[field]}`);
+        save(`${a.name} (${a.course}) ${field} → ${a[field]}`, { id, field });
       });
 
       // hover card — the plot is read-only, points only explain themselves
@@ -439,23 +451,30 @@
       const sc = $('.scroll');
       sc.addEventListener('wheel', (e) => {
         if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-        sc.scrollLeft += e.deltaY;
+        const unit = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? sc.clientWidth : 1; // lines / pages / pixels
+        sc.scrollLeft += e.deltaY * unit;
         e.preventDefault();
       }, { passive: false });
       let drag = null;
+      const endDrag = () => { drag = null; sc.classList.remove('dragging'); };
       sc.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0) return; // left button only — right-click shouldn't pan
         drag = { x: e.clientX, left: sc.scrollLeft };
         sc.setPointerCapture(e.pointerId);
         sc.classList.add('dragging');
+        $('#tip').style.display = 'none'; // the tooltip can't track the plot while it moves
       });
       sc.addEventListener('pointermove', (e) => drag && (sc.scrollLeft = drag.left - (e.clientX - drag.x)));
-      sc.addEventListener('pointerup', () => { drag = null; sc.classList.remove('dragging'); });
+      sc.addEventListener('pointerup', endDrag);
+      sc.addEventListener('pointercancel', endDrag); // touch: the browser can steal the gesture
       sc.addEventListener('scroll', () => {
-        if (view.min) view.leftDate = view.min.getTime() + (sc.scrollLeft / view.pxDay) * DAY;
+        if (view.min) view.leftDate = view.min.getTime() + ((sc.scrollLeft - view.off) / view.pxDay) * DAY;
       });
 
-      $('#days').value = localStorage.days || 30; // view setting, not data — stays out of the db
-      $('#days').oninput = () => { localStorage.days = $('#days').value; drawPlot(); };
+      const clampDays = (v) => Math.min(730, Math.max(1, Math.round(+v) || 30));
+      $('#days').value = clampDays(localStorage.days); // view setting, not data — stays out of the db
+      $('#days').oninput = () => { localStorage.days = clampDays($('#days').value); drawPlot(); };
+      $('#days').onchange = () => { $('#days').value = localStorage.days; drawPlot(); }; // show what's in effect
       $('#search').oninput = drawList;
       addEventListener('resize', drawPlot);
 
