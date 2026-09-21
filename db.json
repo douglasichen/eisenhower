@@ -5,7 +5,8 @@
     "AI 360",
     "CPSC 425",
     "CIVL 250",
-    "PHIL 250"
+    "PHIL 250",
+    "CPSC 317"
   ],
   "assignments": [
     {
@@ -17,12 +18,12 @@
       "status": "done"
     },
     {
-      "id": "a2",
-      "name": "syllabus quiz",
-      "course": "CPSC 418",
-      "due": "2026-09-23",
-      "importance": 1,
-      "status": "done"
+      "id": "3lbo7da",
+      "name": "test",
+      "course": "CIVL 250",
+      "due": "2026-09-22",
+      "importance": 2,
+      "status": "open"
     },
     {
       "id": "a3",
@@ -30,6 +31,14 @@
       "course": "AI 360",
       "due": "2026-09-23",
       "importance": 2,
+      "status": "done"
+    },
+    {
+      "id": "a2",
+      "name": "syllabus quiz",
+      "course": "CPSC 418",
+      "due": "2026-09-23",
+      "importance": 1,
       "status": "done"
     },
     {
@@ -49,19 +58,19 @@
       "status": "done"
     },
     {
-      "id": "a6",
-      "name": "SRL assignment 1",
-      "course": "CIVL 250",
-      "due": "2026-09-27",
-      "importance": 2,
-      "status": "done"
-    },
-    {
       "id": "a7",
       "name": "reading quiz 3",
       "course": "CPSC 418",
       "due": "2026-09-27",
       "importance": 1,
+      "status": "done"
+    },
+    {
+      "id": "a6",
+      "name": "SRL assignment 1",
+      "course": "CIVL 250",
+      "due": "2026-09-27",
+      "importance": 2,
       "status": "done"
     },
     {
@@ -73,11 +82,699 @@
       "status": "done"
     },
     {
-      "id": "3lbo7da",
-      "name": "test",
-      "course": "CIVL 250",
-      "due": "2026-09-22",
+      "id": "ylwtcak",
+      "name": "assignment 1",
+      "course": "AI 360",
+      "due": "2026-09-29",
       "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "o521lsh",
+      "name": "assignment 2",
+      "course": "COMR 457",
+      "due": "2026-10-01",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "kjaf7ar",
+      "name": "tutorial 1",
+      "course": "CPSC 317",
+      "due": "2026-10-02",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "7j3agz3",
+      "name": "quiz 1",
+      "course": "CPSC 317",
+      "due": "2026-10-03",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "58qk6oi",
+      "name": "assignment 1",
+      "course": "CPSC 317",
+      "due": "2026-10-04",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "844e19s",
+      "name": "quiz 4",
+      "course": "COMR 457",
+      "due": "2026-10-04",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "y0y4ckf",
+      "name": "reading quiz 4",
+      "course": "CPSC 418",
+      "due": "2026-10-04",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "rarjwrj",
+      "name": "weekly study questions 2",
+      "course": "CIVL 250",
+      "due": "2026-10-04",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "7s7klf2",
+      "name": "reflection quiz 1",
+      "course": "AI 360",
+      "due": "2026-10-07",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "traejsy",
+      "name": "homework 2",
+      "course": "CPSC 418",
+      "due": "2026-10-09",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "kkncbhx",
+      "name": "tutorial 2",
+      "course": "CPSC 317",
+      "due": "2026-10-09",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "dnc0x73",
+      "name": "reading quiz 5",
+      "course": "CPSC 418",
+      "due": "2026-10-11",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "bocb1g9",
+      "name": "SRL assignment 2",
+      "course": "CIVL 250",
+      "due": "2026-10-11",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "toa638d",
+      "name": "assignment 2",
+      "course": "AI 360",
+      "due": "2026-10-13",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "5u2zko9",
+      "name": "assignment 3",
+      "course": "COMR 457",
+      "due": "2026-10-13",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "8c00xd5",
+      "name": "quiz 5",
+      "course": "COMR 457",
+      "due": "2026-10-13",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "sw3j6mf",
+      "name": "midterm 1",
+      "course": "CPSC 418",
+      "due": "2026-10-14",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "j9e99vg",
+      "name": "studio exercise 2",
+      "course": "AI 360",
+      "due": "2026-10-14",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "9l98vfi",
+      "name": "assignment 2",
+      "course": "CPSC 425",
+      "due": "2026-10-15",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "alq5aat",
+      "name": "tutorial 3",
+      "course": "CPSC 317",
+      "due": "2026-10-16",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "241hnk5",
+      "name": "quiz 2",
+      "course": "CPSC 317",
+      "due": "2026-10-17",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "n1d6adn",
+      "name": "assignment 2",
+      "course": "CPSC 317",
+      "due": "2026-10-18",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "z5lr1at",
+      "name": "reading quiz 6",
+      "course": "CPSC 418",
+      "due": "2026-10-18",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "u5fkx14",
+      "name": "weekly study questions 3",
+      "course": "CIVL 250",
+      "due": "2026-10-18",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "hljgcmv",
+      "name": "essay 1",
+      "course": "PHIL 250",
+      "due": "2026-10-19",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "rkovmmt",
+      "name": "midterm 1",
+      "course": "COMR 457",
+      "due": "2026-10-19",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "4yu1bsx",
+      "name": "reflection quiz 2",
+      "course": "AI 360",
+      "due": "2026-10-21",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "qnr92ye",
+      "name": "midterm",
+      "course": "CPSC 425",
+      "due": "2026-10-22",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "8m9rnrm",
+      "name": "tutorial 4",
+      "course": "CPSC 317",
+      "due": "2026-10-23",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "fs1epgg",
+      "name": "quiz 6",
+      "course": "COMR 457",
+      "due": "2026-10-25",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "iiz2hvk",
+      "name": "reading quiz 7",
+      "course": "CPSC 418",
+      "due": "2026-10-25",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "wcbiqjd",
+      "name": "SRL assignment 3",
+      "course": "CIVL 250",
+      "due": "2026-10-25",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "ijnjwpi",
+      "name": "assignment 3",
+      "course": "AI 360",
+      "due": "2026-10-27",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "p56gaj1",
+      "name": "studio exercise 3",
+      "course": "AI 360",
+      "due": "2026-10-28",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "dk6yo3v",
+      "name": "assignment 2",
+      "course": "PHIL 250",
+      "due": "2026-10-29",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "jlv11qy",
+      "name": "assignment 3",
+      "course": "CPSC 425",
+      "due": "2026-10-29",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "g1z7keb",
+      "name": "midterm",
+      "course": "CIVL 250",
+      "due": "2026-10-29",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "opcwgux",
+      "name": "homework 3",
+      "course": "CPSC 418",
+      "due": "2026-10-30",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "tquswsp",
+      "name": "tutorial 5",
+      "course": "CPSC 317",
+      "due": "2026-10-30",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "jy8mgke",
+      "name": "quiz 3",
+      "course": "CPSC 317",
+      "due": "2026-10-31",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "ynh479f",
+      "name": "assignment 3",
+      "course": "CPSC 317",
+      "due": "2026-11-01",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "bloydwi",
+      "name": "quiz 7",
+      "course": "COMR 457",
+      "due": "2026-11-01",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "sw5232p",
+      "name": "reading quiz 8",
+      "course": "CPSC 418",
+      "due": "2026-11-01",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "xhhrlcn",
+      "name": "weekly study questions 4",
+      "course": "CIVL 250",
+      "due": "2026-11-01",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "d1lawy9",
+      "name": "project proposal",
+      "course": "AI 360",
+      "due": "2026-11-03",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "lm1l4fg",
+      "name": "reflection quiz 3",
+      "course": "AI 360",
+      "due": "2026-11-04",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "75qggej",
+      "name": "tutorial 6",
+      "course": "CPSC 317",
+      "due": "2026-11-06",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "7pliszp",
+      "name": "reading quiz 9",
+      "course": "CPSC 418",
+      "due": "2026-11-08",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "91ux656",
+      "name": "SRL assignment 4",
+      "course": "CIVL 250",
+      "due": "2026-11-08",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "j8h8tc3",
+      "name": "assignment 4",
+      "course": "COMR 457",
+      "due": "2026-11-12",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "ev3rwje",
+      "name": "assignment 4",
+      "course": "CPSC 425",
+      "due": "2026-11-12",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "v3mku61",
+      "name": "midterm exam",
+      "course": "AI 360",
+      "due": "2026-11-12",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "8g7ssea",
+      "name": "homework 4",
+      "course": "CPSC 418",
+      "due": "2026-11-13",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "ohtw9au",
+      "name": "tutorial 7",
+      "course": "CPSC 317",
+      "due": "2026-11-13",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "p1jz1x9",
+      "name": "assignment 4",
+      "course": "CPSC 317",
+      "due": "2026-11-15",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "drz22s9",
+      "name": "weekly study questions 5",
+      "course": "CIVL 250",
+      "due": "2026-11-15",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "1r9tv20",
+      "name": "midterm 2",
+      "course": "COMR 457",
+      "due": "2026-11-18",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "0gek2cj",
+      "name": "midterm 2",
+      "course": "CPSC 418",
+      "due": "2026-11-18",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "a7qj6re",
+      "name": "studio assignment 4",
+      "course": "AI 360",
+      "due": "2026-11-18",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "zgtbhz7",
+      "name": "assignment 3",
+      "course": "PHIL 250",
+      "due": "2026-11-19",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "k2rkqe5",
+      "name": "tutorial 8",
+      "course": "CPSC 317",
+      "due": "2026-11-20",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "xngg56v",
+      "name": "quiz 4",
+      "course": "CPSC 317",
+      "due": "2026-11-21",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "n33hzqo",
+      "name": "quiz 8",
+      "course": "COMR 457",
+      "due": "2026-11-22",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "9bz1pj8",
+      "name": "reading quiz 10",
+      "course": "CPSC 418",
+      "due": "2026-11-22",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "u6gijne",
+      "name": "SRL assignment 5",
+      "course": "CIVL 250",
+      "due": "2026-11-22",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "ugbte69",
+      "name": "essay 2",
+      "course": "PHIL 250",
+      "due": "2026-11-23",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "6rmg5rb",
+      "name": "project discussions",
+      "course": "AI 360",
+      "due": "2026-11-25",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "muu47z2",
+      "name": "assignment 5",
+      "course": "COMR 457",
+      "due": "2026-11-26",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "0thttyj",
+      "name": "assignment 5",
+      "course": "CPSC 425",
+      "due": "2026-11-26",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "qnubd94",
+      "name": "tutorial 9",
+      "course": "CPSC 317",
+      "due": "2026-11-27",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "szcxr37",
+      "name": "assignment 5",
+      "course": "CPSC 317",
+      "due": "2026-11-29",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "a1tnj22",
+      "name": "quiz 9",
+      "course": "COMR 457",
+      "due": "2026-11-29",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "n77xwg3",
+      "name": "reading quiz 11",
+      "course": "CPSC 418",
+      "due": "2026-11-29",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "upsh7m1",
+      "name": "weekly study questions 6",
+      "course": "CIVL 250",
+      "due": "2026-11-29",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "c589qqx",
+      "name": "assignment 4",
+      "course": "AI 360",
+      "due": "2026-12-01",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "o3c6hzb",
+      "name": "final project presentation (date TBD)",
+      "course": "AI 360",
+      "due": "2026-12-02",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "kr8zi0x",
+      "name": "reflection quiz 4",
+      "course": "AI 360",
+      "due": "2026-12-02",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "hzwqq1g",
+      "name": "homework 5",
+      "course": "CPSC 418",
+      "due": "2026-12-04",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "61idxuq",
+      "name": "tutorial 10",
+      "course": "CPSC 317",
+      "due": "2026-12-04",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "htjj70x",
+      "name": "quiz 5",
+      "course": "CPSC 317",
+      "due": "2026-12-05",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "pdq1sgz",
+      "name": "reading quiz 12",
+      "course": "CPSC 418",
+      "due": "2026-12-06",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "0tqhfdq",
+      "name": "assignment 6",
+      "course": "COMR 457",
+      "due": "2026-12-09",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "25gtl2i",
+      "name": "small-group discussion 3",
+      "course": "CIVL 250",
+      "due": "2026-12-10",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "3sya78b",
+      "name": "oral final",
+      "course": "PHIL 250",
+      "due": "2026-12-11",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "tha8gpc",
+      "name": "tutorial 11",
+      "course": "CPSC 317",
+      "due": "2026-12-11",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "s25hku4",
+      "name": "assignment 6",
+      "course": "CPSC 425",
+      "due": "2026-12-15",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "anl1kig",
+      "name": "final exam (date TBD)",
+      "course": "CIVL 250",
+      "due": "2026-12-18",
+      "importance": 3,
       "status": "open"
     }
   ]
