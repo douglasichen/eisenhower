@@ -57,7 +57,8 @@
       }
 
       .plotwrap { display: flex; padding: 16px 0 16px 4px; }
-      .scroll { overflow-x: auto; overscroll-behavior-x: contain; flex: 1; }
+      .scroll { overflow-x: auto; overscroll-behavior-x: contain; flex: 1; cursor: grab; }
+      .scroll.dragging { cursor: grabbing; }
       .scroll::-webkit-scrollbar { height: 8px; }
       .scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
       #yaxis { flex: none; }
@@ -150,7 +151,7 @@
 
       <div class="bar range">
         <label>next <input type="number" id="days" value="30" min="1" max="730" /> days</label>
-        <span class="sub">scroll the plot sideways</span>
+        <span class="sub">drag the plot to pan</span>
       </div>
 
       <div class="legend" id="legend"></div>
@@ -407,7 +408,24 @@
       });
 
       $('#hide-done').onchange = render;
-      $('#days').oninput = drawPlot;
+      // drag to pan; a plain wheel scrolls the page sideways here too
+      const sc = $('.scroll');
+      sc.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+        sc.scrollLeft += e.deltaY;
+        e.preventDefault();
+      }, { passive: false });
+      let drag = null;
+      sc.addEventListener('pointerdown', (e) => {
+        drag = { x: e.clientX, left: sc.scrollLeft };
+        sc.setPointerCapture(e.pointerId);
+        sc.classList.add('dragging');
+      });
+      sc.addEventListener('pointermove', (e) => drag && (sc.scrollLeft = drag.left - (e.clientX - drag.x)));
+      sc.addEventListener('pointerup', () => { drag = null; sc.classList.remove('dragging'); });
+
+      $('#days').value = localStorage.days || 30; // view setting, not data — stays out of the db
+      $('#days').oninput = () => { localStorage.days = $('#days').value; drawPlot(); };
       $('#search').oninput = drawList;
       addEventListener('resize', drawPlot);
 
