@@ -15,7 +15,7 @@
       "name": "quiz 3",
       "course": "COMR 457",
       "due": "2026-09-22",
-      "importance": 3,
+      "importance": 1,
       "status": "open"
     },
     {
@@ -768,22 +768,6 @@
       "course": "CIVL 250",
       "due": "2026-12-18",
       "importance": 3,
-      "status": "open"
-    },
-    {
-      "id": "z1",
-      "name": "serial probe A",
-      "course": "Personal",
-      "due": "2026-10-01",
-      "importance": 1,
-      "status": "open"
-    },
-    {
-      "id": "z2",
-      "name": "serial probe B",
-      "course": "Personal",
-      "due": "2026-10-02",
-      "importance": 1,
       "status": "open"
     }
   ]
