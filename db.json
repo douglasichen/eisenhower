@@ -14,7 +14,7 @@
       "course": "COMR 457",
       "due": "2026-09-22",
       "importance": 1,
-      "done": true
+      "status": "done"
     },
     {
       "id": "a2",
@@ -22,7 +22,7 @@
       "course": "CPSC 418",
       "due": "2026-09-23",
       "importance": 1,
-      "done": true
+      "status": "done"
     },
     {
       "id": "a3",
@@ -30,7 +30,7 @@
       "course": "AI 360",
       "due": "2026-09-23",
       "importance": 2,
-      "done": true
+      "status": "done"
     },
     {
       "id": "a4",
@@ -38,7 +38,7 @@
       "course": "CPSC 425",
       "due": "2026-09-24",
       "importance": 2,
-      "done": true
+      "status": "done"
     },
     {
       "id": "a5",
@@ -46,7 +46,7 @@
       "course": "CPSC 418",
       "due": "2026-09-25",
       "importance": 2,
-      "done": true
+      "status": "done"
     },
     {
       "id": "a6",
@@ -54,7 +54,7 @@
       "course": "CIVL 250",
       "due": "2026-09-27",
       "importance": 2,
-      "done": true
+      "status": "done"
     },
     {
       "id": "a7",
@@ -62,7 +62,7 @@
       "course": "CPSC 418",
       "due": "2026-09-27",
       "importance": 1,
-      "done": true
+      "status": "done"
     },
     {
       "id": "a8",
@@ -70,7 +70,7 @@
       "course": "PHIL 250",
       "due": "2026-09-29",
       "importance": 2,
-      "done": true
+      "status": "done"
     },
     {
       "id": "3lbo7da",
@@ -78,7 +78,7 @@
       "course": "CIVL 250",
       "due": "2026-09-22",
       "importance": 2,
-      "done": false
+      "status": "done"
     }
   ]
 }
