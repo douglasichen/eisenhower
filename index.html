@@ -197,7 +197,6 @@
       const parse = (s) => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
       const daysLeft = (a) => Math.round((parse(a.due) - today()) / DAY);
       const fmt = (d) => d.toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
-      const hash = (s) => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) | 0; return h; };
 
       // one marker element, whatever its shape
       function mark(kind, x, y, r, attrs, inner = '') {
@@ -265,9 +264,22 @@
           svg += `<text class="axis" x="${x(t0) + 6}" y="${T + 11}" fill="var(--accent)">today</text>`;
         }
 
+        // dodge, not jitter: a point sits exactly on its importance line unless something
+        // else shares its (day, importance) — then the pile fans out around the line
+        const pile = new Map();
         for (const a of items) {
-          const jit = ((hash(a.id) % 100) / 100 - 0.5) * 0.7; // ±0.35 importance units
-          const cx = x(parse(a.due)), cy = bandY(a.importance + jit), c = color(a.course);
+          const k = a.due + '|' + a.importance;
+          pile.set(k, (pile.get(k) || []).concat(a));
+        }
+        const dy = new Map();
+        for (const group of pile.values()) {
+          group.sort((p, q) => p.id.localeCompare(q.id));
+          const gap = Math.min(11, 58 / Math.max(1, group.length - 1));
+          group.forEach((a, i) => dy.set(a.id, (i - (group.length - 1) / 2) * gap));
+        }
+
+        for (const a of items) {
+          const cx = x(parse(a.due)), cy = bandY(a.importance) + dy.get(a.id), c = color(a.course);
           const open = a.status === 'open';
           svg += mark(
             shape(a.course), cx, cy, 4.5,
