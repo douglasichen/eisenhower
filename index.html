@@ -164,6 +164,7 @@
           <option value="1">importance 1</option>
           <option value="2" selected>importance 2</option>
           <option value="3">importance 3</option>
+          <!-- ponytail: 1–3 is the scale; the plot's 0–4 axis is just headroom for jitter -->
         </select>
         <button>Add</button>
       </form>
@@ -308,7 +309,7 @@
                 <input type="checkbox" data-set="skip" data-id="${a.id}" ${a.status === 'skip' ? 'checked' : ''} />
                 <input type="date" class="due" data-field="due" data-id="${a.id}" value="${a.due}" />
                 <select class="imp" data-field="importance" data-id="${a.id}">
-                  ${[0, 1, 2, 3, 4].map((i) => `<option ${a.importance === i ? 'selected' : ''}>${i}</option>`).join('')}
+                  ${[1, 2, 3].map((i) => `<option ${a.importance === i ? 'selected' : ''}>${i}</option>`).join('')}
                 </select>
                 <button class="del" data-del="${a.id}" title="delete">×</button>
               </div>`;
