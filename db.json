@@ -71,14 +71,6 @@
       "due": "2026-09-29",
       "importance": 2,
       "done": false
-    },
-    {
-      "id": "smoke",
-      "name": "smoke test",
-      "course": "PHIL 250",
-      "due": "2026-10-02",
-      "importance": 3,
-      "done": false
     }
   ]
 }
