@@ -11,4 +11,4 @@ node server.js   # http://localhost:47913
 - `index.html` — the page (plot + list + add form). Colour scheme lives in the `:root` vars at the top.
 - `server.js` — serves the page, takes `POST /db`.
 
-Courses get a colour + shape from their position in `db.json`'s `courses` array — reorder it to recolour.
+Topics get a colour + shape from their position in `db.json`'s `courses` array (topics) — reorder it to recolour.
