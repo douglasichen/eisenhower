@@ -191,8 +191,10 @@
       let db = { courses: [], assignments: [] };
       let hidden = new Set(); // courses toggled off in the legend
 
-      const color = (course) => `var(--s${(db.courses.indexOf(course) % SLOTS) + 1})`;
-      const shape = (course) => SHAPES[db.courses.indexOf(course) % SHAPES.length];
+      const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+      const slot = (course) => Math.max(0, db.courses.indexOf(course)); // unknown topic → slot 1, never --s0
+      const color = (course) => `var(--s${(slot(course) % SLOTS) + 1})`;
+      const shape = (course) => SHAPES[slot(course) % SHAPES.length];
       const today = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; };
       const parse = (s) => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
       const daysLeft = (a) => Math.round((parse(a.due) - today()) / DAY);
@@ -241,8 +243,8 @@
         const sc = $('.scroll');
         const [min, max] = timeline();
         const days = (max - min) / DAY;
-        const window = Math.min(730, Math.max(1, +$('#days').value || 30));
-        const pxDay = sc.clientWidth / window;
+        const windowDays = Math.min(730, Math.max(1, +$('#days').value || 30));
+        const pxDay = sc.clientWidth / windowDays;
         const OFF = 10; // so a marker sitting on the first day isn't half cut off
         const W = Math.max(sc.clientWidth, days * pxDay + OFF);
         const x = (d) => OFF + ((d - min) / DAY) * pxDay;
@@ -308,12 +310,12 @@
       function drawLegend() {
         $('#legend').innerHTML = db.courses
           .map(
-            (c) => `<button class="chip" aria-pressed="${!hidden.has(c)}" data-course="${c}">
+            (c) => `<button class="chip" aria-pressed="${!hidden.has(c)}" data-course="${esc(c)}">
               <svg width="12" height="12" viewBox="0 0 12 12">${mark(shape(c), 6, 6, 4.5, `fill="${color(c)}"`)}</svg>
-              ${c}</button>`
+              ${esc(c)}</button>`
           )
           .join('');
-        $('#courses').innerHTML = db.courses.map((c) => `<option value="${c}">`).join('');
+        $('#courses').innerHTML = db.courses.map((c) => `<option value="${esc(c)}">`).join('');
       }
 
       function drawList() {
@@ -328,8 +330,8 @@
               const d = daysLeft(a);
               const cls = d < 0 ? 'over' : d <= 2 ? 'soon' : '';
               return `<div class="row ${a.status}">
-                <span class="name">${a.name}</span>
-                <span class="course" style="color:${color(a.course)}">${a.course}</span>
+                <span class="name">${esc(a.name)}</span>
+                <span class="course" style="color:${color(a.course)}">${esc(a.course)}</span>
                 <span class="left ${cls}">${d < 0 ? `${-d} days late` : d === 1 ? '1 day' : `${d} days`}</span>
                 <input type="checkbox" data-set="done" data-id="${a.id}" ${a.status === 'done' ? 'checked' : ''} />
                 <input type="checkbox" data-set="skip" data-id="${a.id}" ${a.status === 'skip' ? 'checked' : ''} />
@@ -420,7 +422,7 @@
         if (!m) return;
         const a = byId(m.dataset.id);
         const d = daysLeft(a);
-        tip.innerHTML = `<b>${a.name}</b><br /><span style="color:${color(a.course)}">${a.course}</span>
+        tip.innerHTML = `<b>${esc(a.name)}</b><br /><span style="color:${color(a.course)}">${esc(a.course)}</span>
           · importance ${a.importance}<br />${a.due} · ${d < 0 ? `${-d}d late` : `${d}d left`}${
           a.status === 'open' ? '' : ` · ${a.status === 'skip' ? 'not doing' : 'done'}`
         }`;
@@ -459,7 +461,11 @@
 
       fetch('db.json')
         .then((r) => r.json())
-        .then((d) => { db = d; render(); })
+        .then((d) => {
+          db = d;
+          for (const a of db.assignments) if (!db.courses.includes(a.course)) db.courses.push(a.course);
+          render();
+        })
         .catch(() => ($('#list').innerHTML = '<div class="empty">run <code>node server.js</code> and open localhost:47913</div>'));
     </script>
   </body>
