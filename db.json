@@ -11,6 +11,22 @@
   ],
   "assignments": [
     {
+      "id": "kjaf7ar",
+      "name": "tutorial 1",
+      "course": "CPSC 317",
+      "due": "2026-09-11",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "kkncbhx",
+      "name": "tutorial 2",
+      "course": "CPSC 317",
+      "due": "2026-09-18",
+      "importance": 1,
+      "status": "open"
+    },
+    {
       "id": "a1",
       "name": "quiz 3",
       "course": "COMR 457",
@@ -51,6 +67,14 @@
       "status": "open"
     },
     {
+      "id": "alq5aat",
+      "name": "tutorial 3",
+      "course": "CPSC 317",
+      "due": "2026-09-25",
+      "importance": 1,
+      "status": "open"
+    },
+    {
       "id": "a7",
       "name": "reading quiz 3",
       "course": "CPSC 418",
@@ -62,6 +86,14 @@
       "id": "a6",
       "name": "SRL assignment 1",
       "course": "CIVL 250",
+      "due": "2026-09-27",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "58qk6oi",
+      "name": "assignment 1",
+      "course": "CPSC 317",
       "due": "2026-09-27",
       "importance": 2,
       "status": "open"
@@ -91,8 +123,8 @@
       "status": "open"
     },
     {
-      "id": "kjaf7ar",
-      "name": "tutorial 1",
+      "id": "8m9rnrm",
+      "name": "tutorial 4",
       "course": "CPSC 317",
       "due": "2026-10-02",
       "importance": 1,
@@ -104,14 +136,6 @@
       "course": "CPSC 317",
       "due": "2026-10-03",
       "importance": 3,
-      "status": "open"
-    },
-    {
-      "id": "58qk6oi",
-      "name": "assignment 1",
-      "course": "CPSC 317",
-      "due": "2026-10-04",
-      "importance": 2,
       "status": "open"
     },
     {
@@ -155,18 +179,10 @@
       "status": "open"
     },
     {
-      "id": "kkncbhx",
-      "name": "tutorial 2",
+      "id": "tquswsp",
+      "name": "tutorial 5",
       "course": "CPSC 317",
       "due": "2026-10-09",
-      "importance": 1,
-      "status": "open"
-    },
-    {
-      "id": "dnc0x73",
-      "name": "reading quiz 5",
-      "course": "CPSC 418",
-      "due": "2026-10-11",
       "importance": 1,
       "status": "open"
     },
@@ -227,8 +243,8 @@
       "status": "open"
     },
     {
-      "id": "alq5aat",
-      "name": "tutorial 3",
+      "id": "75qggej",
+      "name": "tutorial 6",
       "course": "CPSC 317",
       "due": "2026-10-16",
       "importance": 1,
@@ -243,19 +259,19 @@
       "status": "open"
     },
     {
+      "id": "dnc0x73",
+      "name": "reading quiz 5",
+      "course": "CPSC 418",
+      "due": "2026-10-18",
+      "importance": 1,
+      "status": "open"
+    },
+    {
       "id": "n1d6adn",
       "name": "assignment 2",
       "course": "CPSC 317",
       "due": "2026-10-18",
       "importance": 2,
-      "status": "open"
-    },
-    {
-      "id": "z5lr1at",
-      "name": "reading quiz 6",
-      "course": "CPSC 418",
-      "due": "2026-10-18",
-      "importance": 1,
       "status": "open"
     },
     {
@@ -299,10 +315,18 @@
       "status": "open"
     },
     {
-      "id": "8m9rnrm",
-      "name": "tutorial 4",
+      "id": "ohtw9au",
+      "name": "tutorial 7",
       "course": "CPSC 317",
       "due": "2026-10-23",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "z5lr1at",
+      "name": "reading quiz 6",
+      "course": "CPSC 418",
+      "due": "2026-10-25",
       "importance": 1,
       "status": "open"
     },
@@ -310,14 +334,6 @@
       "id": "fs1epgg",
       "name": "quiz 6",
       "course": "COMR 457",
-      "due": "2026-10-25",
-      "importance": 1,
-      "status": "open"
-    },
-    {
-      "id": "iiz2hvk",
-      "name": "reading quiz 7",
-      "course": "CPSC 418",
       "due": "2026-10-25",
       "importance": 1,
       "status": "open"
@@ -379,8 +395,8 @@
       "status": "open"
     },
     {
-      "id": "tquswsp",
-      "name": "tutorial 5",
+      "id": "k2rkqe5",
+      "name": "tutorial 8",
       "course": "CPSC 317",
       "due": "2026-10-30",
       "importance": 1,
@@ -395,6 +411,14 @@
       "status": "open"
     },
     {
+      "id": "iiz2hvk",
+      "name": "reading quiz 7",
+      "course": "CPSC 418",
+      "due": "2026-11-01",
+      "importance": 1,
+      "status": "open"
+    },
+    {
       "id": "ynh479f",
       "name": "assignment 3",
       "course": "CPSC 317",
@@ -406,14 +430,6 @@
       "id": "bloydwi",
       "name": "quiz 7",
       "course": "COMR 457",
-      "due": "2026-11-01",
-      "importance": 1,
-      "status": "open"
-    },
-    {
-      "id": "sw5232p",
-      "name": "reading quiz 8",
-      "course": "CPSC 418",
       "due": "2026-11-01",
       "importance": 1,
       "status": "open"
@@ -443,18 +459,10 @@
       "status": "open"
     },
     {
-      "id": "75qggej",
-      "name": "tutorial 6",
+      "id": "qnubd94",
+      "name": "tutorial 9",
       "course": "CPSC 317",
       "due": "2026-11-06",
-      "importance": 1,
-      "status": "open"
-    },
-    {
-      "id": "7pliszp",
-      "name": "reading quiz 9",
-      "course": "CPSC 418",
-      "due": "2026-11-08",
       "importance": 1,
       "status": "open"
     },
@@ -499,10 +507,18 @@
       "status": "open"
     },
     {
-      "id": "ohtw9au",
-      "name": "tutorial 7",
+      "id": "61idxuq",
+      "name": "tutorial 10",
       "course": "CPSC 317",
       "due": "2026-11-13",
+      "importance": 1,
+      "status": "open"
+    },
+    {
+      "id": "sw5232p",
+      "name": "reading quiz 8",
+      "course": "CPSC 418",
+      "due": "2026-11-15",
       "importance": 1,
       "status": "open"
     },
@@ -555,8 +571,8 @@
       "status": "open"
     },
     {
-      "id": "k2rkqe5",
-      "name": "tutorial 8",
+      "id": "tha8gpc",
+      "name": "tutorial 11",
       "course": "CPSC 317",
       "due": "2026-11-20",
       "importance": 1,
@@ -571,17 +587,17 @@
       "status": "open"
     },
     {
-      "id": "n33hzqo",
-      "name": "quiz 8",
-      "course": "COMR 457",
+      "id": "7pliszp",
+      "name": "reading quiz 9",
+      "course": "CPSC 418",
       "due": "2026-11-22",
       "importance": 1,
       "status": "open"
     },
     {
-      "id": "9bz1pj8",
-      "name": "reading quiz 10",
-      "course": "CPSC 418",
+      "id": "n33hzqo",
+      "name": "quiz 8",
+      "course": "COMR 457",
       "due": "2026-11-22",
       "importance": 1,
       "status": "open"
@@ -627,10 +643,10 @@
       "status": "open"
     },
     {
-      "id": "qnubd94",
-      "name": "tutorial 9",
-      "course": "CPSC 317",
-      "due": "2026-11-27",
+      "id": "9bz1pj8",
+      "name": "reading quiz 10",
+      "course": "CPSC 418",
+      "due": "2026-11-29",
       "importance": 1,
       "status": "open"
     },
@@ -646,14 +662,6 @@
       "id": "a1tnj22",
       "name": "quiz 9",
       "course": "COMR 457",
-      "due": "2026-11-29",
-      "importance": 1,
-      "status": "open"
-    },
-    {
-      "id": "n77xwg3",
-      "name": "reading quiz 11",
-      "course": "CPSC 418",
       "due": "2026-11-29",
       "importance": 1,
       "status": "open"
@@ -675,14 +683,6 @@
       "status": "open"
     },
     {
-      "id": "o3c6hzb",
-      "name": "final project presentation (date TBD)",
-      "course": "AI 360",
-      "due": "2026-12-02",
-      "importance": 3,
-      "status": "open"
-    },
-    {
       "id": "kr8zi0x",
       "name": "reflection quiz 4",
       "course": "AI 360",
@@ -699,27 +699,11 @@
       "status": "open"
     },
     {
-      "id": "61idxuq",
-      "name": "tutorial 10",
-      "course": "CPSC 317",
-      "due": "2026-12-04",
-      "importance": 1,
-      "status": "open"
-    },
-    {
       "id": "htjj70x",
       "name": "quiz 5",
       "course": "CPSC 317",
       "due": "2026-12-05",
       "importance": 3,
-      "status": "open"
-    },
-    {
-      "id": "pdq1sgz",
-      "name": "reading quiz 12",
-      "course": "CPSC 418",
-      "due": "2026-12-06",
-      "importance": 1,
       "status": "open"
     },
     {
@@ -747,19 +731,19 @@
       "status": "open"
     },
     {
-      "id": "tha8gpc",
-      "name": "tutorial 11",
-      "course": "CPSC 317",
-      "due": "2026-12-11",
-      "importance": 1,
-      "status": "open"
-    },
-    {
       "id": "s25hku4",
       "name": "assignment 6",
       "course": "CPSC 425",
       "due": "2026-12-15",
       "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "o3c6hzb",
+      "name": "final project presentation (date TBD)",
+      "course": "AI 360",
+      "due": "2026-12-16",
+      "importance": 3,
       "status": "open"
     },
     {
