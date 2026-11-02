@@ -753,6 +753,14 @@
       "due": "2026-12-18",
       "importance": 3,
       "status": "open"
+    },
+    {
+      "id": "i604d3e",
+      "name": "module 5 lecture 3 clicker quiz (section 101)",
+      "course": "CPSC 317",
+      "due": "2026-11-06",
+      "importance": 1,
+      "status": "open"
     }
   ]
 }
