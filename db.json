@@ -350,7 +350,7 @@
       "id": "ijnjwpi",
       "name": "assignment 3",
       "course": "AI 360",
-      "due": "2026-11-03",
+      "due": "2026-11-02",
       "importance": 2,
       "status": "done"
     },
@@ -792,14 +792,6 @@
       "course": "CPSC 317",
       "due": "2026-12-12",
       "importance": 3,
-      "status": "open"
-    },
-    {
-      "id": "ctxhs21",
-      "name": "small-group discussion 2 (instructions: Oct 4; check submission)",
-      "course": "CIVL 250",
-      "due": "2026-10-04",
-      "importance": 1,
       "status": "open"
     }
   ]
