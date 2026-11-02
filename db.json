@@ -748,9 +748,9 @@
     },
     {
       "id": "anl1kig",
-      "name": "final exam (date TBD)",
+      "name": "final exam (3:30pm, UBC official)",
       "course": "CIVL 250",
-      "due": "2026-12-18",
+      "due": "2026-12-20",
       "importance": 3,
       "status": "open"
     },
@@ -793,6 +793,38 @@
       "due": "2026-12-12",
       "importance": 3,
       "status": "open"
+    },
+    {
+      "id": "662e478b3",
+      "course": "CPSC 425",
+      "status": "open",
+      "name": "final exam (7:00pm, UBC official)",
+      "due": "2026-12-11",
+      "importance": 3
+    },
+    {
+      "id": "0d57f4dce",
+      "course": "CPSC 418",
+      "status": "open",
+      "name": "final exam (8:30am, UBC official)",
+      "due": "2026-12-14",
+      "importance": 3
+    },
+    {
+      "id": "119b51ae0",
+      "course": "COMR 457",
+      "status": "open",
+      "name": "final exam (12:00pm, UBC official)",
+      "due": "2026-12-17",
+      "importance": 3
+    },
+    {
+      "id": "dbbbc94a9",
+      "course": "AI 360",
+      "status": "open",
+      "name": "final exam (8:30am, UBC official)",
+      "due": "2026-12-20",
+      "importance": 3
     }
   ]
 }
