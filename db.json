@@ -761,6 +761,14 @@
       "due": "2026-11-06",
       "importance": 1,
       "status": "open"
+    },
+    {
+      "id": "y887gjf",
+      "name": "module 5 lecture 4 clicker quiz (section 101)",
+      "course": "CPSC 317",
+      "due": "2026-11-06",
+      "importance": 1,
+      "status": "open"
     }
   ]
 }
