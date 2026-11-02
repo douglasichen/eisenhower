@@ -785,6 +785,14 @@
       "due": "2026-11-08",
       "importance": 1,
       "status": "open"
+    },
+    {
+      "id": "vgcsto9",
+      "name": "final exam (booked 7pm, ICCS 008)",
+      "course": "CPSC 317",
+      "due": "2026-12-12",
+      "importance": 3,
+      "status": "open"
     }
   ]
 }
