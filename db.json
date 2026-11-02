@@ -777,6 +777,14 @@
       "due": "2026-11-06",
       "importance": 1,
       "status": "open"
+    },
+    {
+      "id": "tkm1nve",
+      "name": "discussion 3 deadline check (announcement Nov 8; Canvas Dec 10)",
+      "course": "CIVL 250",
+      "due": "2026-11-08",
+      "importance": 1,
+      "status": "open"
     }
   ]
 }
