@@ -825,6 +825,30 @@
       "name": "final exam (8:30am, UBC official)",
       "due": "2026-12-20",
       "importance": 3
+    },
+    {
+      "id": "6c1d329ba",
+      "course": "PHIL 250",
+      "name": "essay 1 interview (6:40 PM)",
+      "due": "2026-11-05",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "d5e079c57",
+      "course": "Personal",
+      "name": "Superhuman interview (11:00 AM; recruiter screen with Whitney Galindo; rebooked from Nov 12)",
+      "due": "2026-11-09",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "d621879dd",
+      "course": "Personal",
+      "name": "Arcesium interview (1:00 PM)",
+      "due": "2026-11-10",
+      "importance": 3,
+      "status": "open"
     }
   ]
 }
