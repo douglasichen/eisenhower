@@ -849,6 +849,14 @@
       "due": "2026-11-10",
       "importance": 3,
       "status": "open"
+    },
+    {
+      "id": "is1z0nv",
+      "name": "Palantir interview",
+      "course": "Personal",
+      "due": "2026-11-13",
+      "importance": 3,
+      "status": "open"
     }
   ]
 }
