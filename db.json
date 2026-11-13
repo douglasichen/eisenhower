@@ -881,6 +881,14 @@
       "due": "2026-11-24",
       "importance": 3,
       "status": "open"
+    },
+    {
+      "id": "eituejc",
+      "name": "Spring Nimble Potential Offer Interview",
+      "course": "Personal",
+      "due": "2026-11-20",
+      "importance": 3,
+      "status": "open"
     }
   ]
 }
