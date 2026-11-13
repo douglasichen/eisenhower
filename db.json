@@ -873,6 +873,14 @@
       "due": "2026-11-19",
       "importance": 3,
       "status": "open"
+    },
+    {
+      "id": "plxfzsr",
+      "name": "Agave Interview",
+      "course": "Personal",
+      "due": "2026-11-24",
+      "importance": 3,
+      "status": "open"
     }
   ]
 }
