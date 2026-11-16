@@ -740,7 +740,7 @@
     },
     {
       "id": "o3c6hzb",
-      "name": "final project presentation (date TBD)",
+      "name": "final project presentation (8:30–11:30am; no final exam)",
       "course": "AI 360",
       "due": "2026-12-20",
       "importance": 3,
@@ -887,6 +887,22 @@
       "name": "Spring Nimble Potential Offer Interview",
       "course": "Personal",
       "due": "2026-11-20",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "ai360-report-2026",
+      "name": "final project report (complete submission required)",
+      "due": "2026-12-07",
+      "course": "AI 360",
+      "importance": 3,
+      "status": "open"
+    },
+    {
+      "id": "ai360-revisions-2026",
+      "name": "final project report revisions (penalty-free cutoff)",
+      "due": "2026-12-20",
+      "course": "AI 360",
       "importance": 3,
       "status": "open"
     }
