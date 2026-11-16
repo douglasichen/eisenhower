@@ -558,7 +558,7 @@
       "id": "a7qj6re",
       "name": "studio assignment 4",
       "course": "AI 360",
-      "due": "2026-11-18",
+      "due": "2026-11-25",
       "importance": 2,
       "status": "open"
     },
@@ -592,7 +592,7 @@
       "course": "CPSC 418",
       "due": "2026-11-22",
       "importance": 1,
-      "status": "open"
+      "status": "done"
     },
     {
       "id": "n33hzqo",
@@ -600,7 +600,7 @@
       "course": "COMR 457",
       "due": "2026-11-22",
       "importance": 1,
-      "status": "open"
+      "status": "done"
     },
     {
       "id": "u6gijne",
@@ -622,7 +622,7 @@
       "id": "6rmg5rb",
       "name": "project discussions",
       "course": "AI 360",
-      "due": "2026-11-25",
+      "due": "2026-11-18",
       "importance": 1,
       "status": "open"
     },
@@ -678,7 +678,7 @@
       "id": "c589qqx",
       "name": "assignment 4",
       "course": "AI 360",
-      "due": "2026-12-01",
+      "due": "2026-12-04",
       "importance": 2,
       "status": "open"
     },
