@@ -905,6 +905,14 @@
       "course": "AI 360",
       "importance": 3,
       "status": "open"
+    },
+    {
+      "id": "sxv5vac",
+      "name": "Midterm 2 Makeup",
+      "course": "COMR 457",
+      "due": "2026-11-24",
+      "importance": 3,
+      "status": "open"
     }
   ]
 }
