@@ -913,6 +913,14 @@
       "due": "2026-11-24",
       "importance": 3,
       "status": "open"
+    },
+    {
+      "id": "nvfa28y",
+      "name": "Palantir Coding Interview",
+      "course": "Personal",
+      "due": "2026-11-20",
+      "importance": 3,
+      "status": "open"
     }
   ]
 }
