@@ -54,7 +54,7 @@
       "id": "a4",
       "name": "assignment 1",
       "course": "CPSC 425",
-      "due": "2026-09-24",
+      "due": "2026-09-29",
       "importance": 2,
       "status": "done"
     },
@@ -206,7 +206,7 @@
       "id": "5u2zko9",
       "name": "assignment 3",
       "course": "COMR 457",
-      "due": "2026-10-13",
+      "due": "2026-10-16",
       "importance": 1,
       "status": "done"
     },
@@ -278,7 +278,7 @@
       "id": "u5fkx14",
       "name": "weekly study questions 3",
       "course": "CIVL 250",
-      "due": "2026-10-18",
+      "due": "2026-11-01",
       "importance": 1,
       "status": "done"
     },
@@ -380,9 +380,9 @@
     },
     {
       "id": "g1z7keb",
-      "name": "midterm",
+      "name": "midterm (opened Oct 29)",
       "course": "CIVL 250",
-      "due": "2026-10-29",
+      "due": "2026-10-30",
       "importance": 2,
       "status": "done"
     },
@@ -430,7 +430,7 @@
       "id": "bloydwi",
       "name": "quiz 7",
       "course": "COMR 457",
-      "due": "2026-11-01",
+      "due": "2026-11-03",
       "importance": 1,
       "status": "done"
     },
@@ -470,7 +470,7 @@
       "id": "91ux656",
       "name": "SRL assignment 4",
       "course": "CIVL 250",
-      "due": "2026-11-22",
+      "due": "2026-12-01",
       "importance": 3,
       "status": "open"
     },
@@ -606,7 +606,7 @@
       "id": "u6gijne",
       "name": "SRL assignment 5",
       "course": "CIVL 250",
-      "due": "2026-11-22",
+      "due": "2026-12-07",
       "importance": 2,
       "status": "open"
     },
@@ -668,9 +668,9 @@
     },
     {
       "id": "upsh7m1",
-      "name": "weekly study questions 6",
+      "name": "Week 11 Study Questions",
       "course": "CIVL 250",
-      "due": "2026-11-29",
+      "due": "2026-12-01",
       "importance": 1,
       "status": "open"
     },
@@ -920,6 +920,38 @@
       "course": "Personal",
       "due": "2026-11-20",
       "importance": 3,
+      "status": "done"
+    },
+    {
+      "id": "e1494a1c28",
+      "name": "weekly study questions 1 (Module 2)",
+      "course": "CIVL 250",
+      "due": "2026-09-20",
+      "importance": 1,
+      "status": "skip"
+    },
+    {
+      "id": "75cc96b9e7",
+      "name": "small-group discussion 4 (Canvas shows Dec 11)",
+      "course": "CIVL 250",
+      "due": "2026-12-07",
+      "importance": 2,
+      "status": "open"
+    },
+    {
+      "id": "5d9366ff93",
+      "name": "reading quiz 2",
+      "course": "CPSC 418",
+      "due": "2026-09-20",
+      "importance": 1,
+      "status": "done"
+    },
+    {
+      "id": "dc4948fd44",
+      "name": "choose your grading scheme",
+      "course": "CPSC 418",
+      "due": "2026-09-23",
+      "importance": 1,
       "status": "done"
     }
   ]
