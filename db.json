@@ -961,6 +961,14 @@
       "due": "2026-11-27",
       "importance": 3,
       "status": "open"
+    },
+    {
+      "id": "7csnyxy",
+      "name": "superhuman final round",
+      "course": "Personal",
+      "due": "2026-11-26",
+      "importance": 3,
+      "status": "open"
     }
   ]
 }
