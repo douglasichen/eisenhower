@@ -560,7 +560,7 @@
       "course": "AI 360",
       "due": "2026-11-25",
       "importance": 2,
-      "status": "open"
+      "status": "done"
     },
     {
       "id": "zgtbhz7",
@@ -953,30 +953,6 @@
       "due": "2026-09-23",
       "importance": 1,
       "status": "done"
-    },
-    {
-      "id": "f5neexr",
-      "name": "agave coding round",
-      "course": "Personal",
-      "due": "2026-11-27",
-      "importance": 3,
-      "status": "open"
-    },
-    {
-      "id": "7csnyxy",
-      "name": "superhuman final round",
-      "course": "Personal",
-      "due": "2026-11-26",
-      "importance": 3,
-      "status": "open"
-    },
-    {
-      "id": "n0z5u35",
-      "name": "genius ai phone screen",
-      "course": "Personal",
-      "due": "2026-12-01",
-      "importance": 3,
-      "status": "open"
     }
   ]
 }
